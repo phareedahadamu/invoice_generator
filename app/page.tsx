@@ -117,7 +117,7 @@ export default function MainPage() {
                     <Details currentDate={currentDate} />
                   </section>
                   {!isMobile && (
-                    <section className="basis-[50%]  h-[calc(100dvh-110px)] lg:block hidden">
+                    <section className="basis-[50%]  h-[calc(100dvh-110px)] lg:block hidden overflow-y-auto">
                       <Preview />
                     </section>
                   )}

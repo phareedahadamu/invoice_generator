@@ -64,11 +64,11 @@ export default function Preview() {
       <div className="w-full p-6 h-full flex justify-center">
         <div
           ref={pageRef}
-          className="bg-surface  w-full max-w-90 flex flex-col h-full p-4 gap-5 print-wrapper"
+          className="bg-surface  print:w-[210mm] print:h-[297mm] w-full h-full flex flex-col   p-4 gap-5 "
         >
           <div className="flex w-full justify-between pb-1.5 border-b border-b-muted/25">
             <div className="flex gap-1 items-center">
-              <Logo size={"20px"} />{" "}
+              <Logo size={"20px"} />
               <span className=" font-medium">UberMinx</span>
             </div>
             <span className="font-medium text-text-secondary">

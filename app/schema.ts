@@ -17,7 +17,7 @@ export const InvoiceSchema = z
       .string()
       .transform((val) => (val === "" ? undefined : val))
       .optional()
-      .refine((val) => !val || /^\+?[1-9]\d{7,14}$/.test(val), {
+      .refine((val) => !val || /^\+?[0-9]\d{7,14}$/.test(val), {
         message: "Invalid phone number",
       }),
     address: z.string().min(2, "Address must be at least two characters"),
@@ -32,8 +32,8 @@ export const InvoiceSchema = z
     items: z
       .array(invoiceItemSchema)
       .min(1, "Invoice must have at least one item"),
-    wht: z.number().gte(0,"WHT cannot be negative"),
-    discount: z.number().gte(0,"WHT cannot be negative"),
+    wht: z.number().gte(0, "WHT cannot be negative"),
+    discount: z.number().gte(0, "WHT cannot be negative"),
     notes: z.string().optional(),
   })
   .superRefine((data, ctx) => {

@@ -45,11 +45,5 @@
   --color-text-secondary: var(--text-secondary);
   --font-sans: var(--font-monty);
 }
-@media print {
-  .print-wrapper {
-    width: 210mm; /* A4 width */
-    height: 297mm; /* A4 height */
-    transform: scale(1.5); /* adjust scale to fill page */
-    transform-origin: top left;
-  }
-}
+
+

@@ -1,7 +1,7 @@
 "use client";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
-import { EllipsisVertical, Loader2, Save, } from "lucide-react";
+import { EllipsisVertical, Loader2, Save } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useFormContext } from "react-hook-form";
 import { Invoice } from "@/app/schema";
@@ -10,6 +10,8 @@ export default function Nav() {
   const [openEllipsis, setOpenEllipsis] = useState(false);
   const [message, setMessage] = useState({ type: "", message: "", title: "" });
   const [isPendingSubmit, startTransitionSubmit] = useTransition();
+
+  const [isPendingSave, startTransitionSave] = useTransition();
 
   // Form
   const {
@@ -20,6 +22,14 @@ export default function Nav() {
   const watchedForm = watch();
 
   const handleSubmitInvoice = async () => {
+    if (!isValid) {
+      setMessage({
+        type: "error",
+        message: "Please check that all required fields are filled and correct",
+        title: "Form not valid",
+      });
+      return;
+    }
     startTransitionSubmit(async () => {
       try {
         const response = await fetch(
@@ -44,7 +54,30 @@ export default function Nav() {
           message: "Something went wrong. Try again later",
           title: "Failed to send invoice",
         });
-        console.error(err);
+        console.log(err);
+      }
+    });
+  };
+
+  const handleSave = () => {
+    startTransitionSave(() => {
+      try {
+        localStorage.setItem(
+          "invoiceGeneratorDraft",
+          JSON.stringify(watchedForm),
+        );
+        setMessage({
+          type: "success",
+          message: "Successfully saved to drafts",
+          title: "Success",
+        });
+      } catch (err) {
+        setMessage({
+          type: "error",
+          message: "Something went wrong. Try again later",
+          title: "Failed to save to drafts",
+        });
+        console.log(err);
       }
     });
   };
@@ -57,14 +90,26 @@ export default function Nav() {
         <span>Create Invoice</span>
       </div>
       <div className="flex gap-4  items-center">
-        <button className=" hidden lg:block rounded-md px-4 py-2 leading-tight text-text-secondary border border-text-secondary duration-200 transition-colors hover:border-secondary cursor-pointer hover:text-secondary">
+        <button
+          disabled={isPendingSave}
+          onClick={() => {
+            handleSave();
+          }}
+          className=" hidden lg:block rounded-md px-4 py-2 leading-tight text-text-secondary border border-text-secondary duration-200 transition-colors hover:border-secondary cursor-pointer hover:text-secondary"
+        >
           Save as draft
         </button>
-        <button className=" block lg:hidden rounded-md  text-text-secondary  duration-200 transition-colors  cursor-pointer hover:text-secondary ">
+        <button
+          disabled={isPendingSave}
+          onClick={() => {
+            handleSave();
+          }}
+          className="block lg:hidden rounded-md  text-text-secondary  duration-200 transition-colors  cursor-pointer hover:text-secondary "
+        >
           <Save size={24} />
         </button>
         <button
-          disabled={!isValid}
+          disabled={isPendingSubmit}
           className="bg-primary rounded-md px-4 py-2 text-mainBg leading-tight duration-200 transition-colors hover:bg-primary-hover cursor-pointer diabled:cursor-not-allowed disabled:opacity-50 min-w-[121.34px] flex justify-center items-center"
           onClick={() => {
             handleSubmitInvoice();

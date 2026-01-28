@@ -1,7 +1,7 @@
 "use client";
-import { useFormContext, } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { ChevronDown, UserRound, Mail, Phone, MapPinHouse } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useEffectEvent } from "react";
 import { currencies } from "@/app/constants";
 import { Invoice } from "@/app/schema";
 import ProductDetails from "./ProductDetails";
@@ -9,10 +9,12 @@ export default function Details({ currentDate }: { currentDate: string }) {
   // States
   const [openInfoSection, setOpenInfoSection] = useState(true);
   const [openProductSection, setOpenProductSection] = useState(false);
+  const [draftAvailable, setDraftAvailable] = useState(false);
 
   //   Form
   const {
     register,
+    reset,
     formState: { errors },
   } = useFormContext<Invoice>();
 
@@ -22,6 +24,23 @@ export default function Details({ currentDate }: { currentDate: string }) {
       {c.sign + " " + c.name}
     </option>
   ));
+
+  const handleLoad = () => {
+    const storedData = localStorage.getItem("invoiceGeneratorDraft");
+    if (storedData) {
+      reset(JSON.parse(storedData));
+    }
+  };
+
+  // Effects
+  const draftAvailableEvent = useEffectEvent((val: boolean) => {
+    setDraftAvailable(val);
+  });
+  useEffect(() => {
+    const storedData = localStorage.getItem("invoiceGeneratorDraft");
+    if (storedData) draftAvailableEvent(true);
+    else draftAvailableEvent(false);
+  });
   return (
     <form className="w-full flex flex-col gap-8 text-[14px]">
       {/* General Info Section */}
@@ -34,6 +53,7 @@ export default function Details({ currentDate }: { currentDate: string }) {
           }}
         >
           <span>General information</span>
+
           <span
             className={`${openInfoSection ? "rotate-180" : ""} duration-200 transition-transform`}
           >
@@ -42,6 +62,40 @@ export default function Details({ currentDate }: { currentDate: string }) {
         </button>
         {openInfoSection && (
           <div className="flex flex-col gap-7">
+            <div className="flex gap-3 text-muted">
+              <button
+                onClick={() => {
+                  handleLoad();
+                }}
+                disabled={!draftAvailable}
+                type="button"
+                className="disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-text-secondary font-normal text-text-secondary hover:text-muted text-[12px] cursor-pointer transition-colors duration-200"
+              >
+                Load saved data
+              </button>
+              |
+              <button
+                onClick={() => {
+                  reset({
+                    name: "",
+                    email: "",
+                    phoneNumber: undefined,
+                    address: "",
+                    invoiceNumber: "",
+                    date: currentDate,
+                    dueDate: currentDate,
+                    currency: "₦",
+                    items: [{ description: "", quantity: 1, price: 0 }],
+                    wht: 0,
+                    discount: 0,
+                  });
+                }}
+                type="button"
+                className="font-normal text-text-secondary hover:text-muted text-[12px] cursor-pointer transition-colors duration-200"
+              >
+                Clear
+              </button>
+            </div>
             <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5">
               <label className="w-full flex flex-col relative gap-0.5">
                 <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
