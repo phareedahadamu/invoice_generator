@@ -124,7 +124,7 @@ export default function MainPage() {
                 </div>
                 {isMobile && showMobilePreview && (
                   <div className="flex w-full gap-4">
-                    <section className="w-full  h-[calc(100dvh-110px)]">
+                    <section className="w-full  h-[calc(100dvh-110px)] overflow-y-auto">
                       <Preview />
                     </section>
                   </div>

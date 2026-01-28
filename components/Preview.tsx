@@ -50,7 +50,7 @@ export default function Preview() {
   });
 
   return (
-    <div className="w-full flex flex-col gap-2 text-[8px] bg-muted/25 h-full pt-4 lg:px-5 px-3 rounded-md ">
+    <div className="w-full flex flex-col gap-2 text-[8px] bg-muted/25 h-fit pt-4 lg:px-5 px-3 rounded-md ">
       <div className=" text-[14px] w-full flex justify-between items-center  p-1  border-b border-b-muted leading-10 text-4 font-semibold">
         Preview
         <button
