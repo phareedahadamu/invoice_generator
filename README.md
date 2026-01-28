@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Invoice Generator Dashboard
 
-## Getting Started
+Description
+This project is a modern, intuitive Invoice Generator Dashboard built for a commercial trader to quickly create professional invoices. It features a responsive, live-updating invoice preview, line item management, and automatic calculations. The UI prioritizes clarity, usability, and a clean design.
 
-First, run the development server:
+🛠 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Framework: Next.js
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Language: TypeScript
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Styling: Tailwind CSS
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Form Management: React Hook Form (RHF)
 
-## Learn More
+PDF / Print Preview: react-to-print
 
-To learn more about Next.js, take a look at the following resources:
+📦 Features
+Must-Have
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Layout & Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Two-panel layout:
 
-## Deploy on Vercel
+Left Panel: Input form for customer and invoice details
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Right Panel: Live invoice preview updating in real-time
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Responsive design (desktop-first, mobile-friendly)
+
+Customer Details
+
+Name, Email, Phone (optional), Billing Address
+
+Invoice Details
+
+Invoice Number, Invoice Date, Due Date
+
+Currency selector (NGN, USD, EUR)
+
+Additional creative fields included
+
+Line Items
+
+Add multiple items dynamically
+
+Each item includes description, quantity, unit price
+
+Automatic calculations: line total, subtotal, VAT (7.5%), WHT, grand total
+
+Live Invoice Preview
+
+Updates as the user types
+
+Includes company/trader name, customer info, item table, totals
+
+Styled for professional presentation
+
+Invoice Actions
+
+Generate / Submit Invoice button
+
+Basic validation (required fields, numeric validation for quantity & price)
+
+Bonus Features Implemented
+
+Print Preview / PDF: Using react-to-print
+
+Submit invoice data to mock API: JSONPlaceholder used for demo submission
+
+Editable tax percentage
+
+🎨 Design Decisions
+
+Modern, clean UI: Minimal, professional, readable typography
+
+Two-panel layout: Makes live preview intuitive for users
+
+Tailwind CSS: For rapid styling, responsive design, and consistent spacing
+
+Component structure:
+
+Reusable input fields and line item components
+
+Live preview component separated for clarity
+
+Form handling with React Hook Form:
+
+Simplifies state management
+
+Works with dynamic field arrays for line items
