@@ -1,7 +1,7 @@
 "use client";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
-import { EllipsisVertical } from "lucide-react";
+import { EllipsisVertical, Loader2 } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useFormContext } from "react-hook-form";
 import { Invoice } from "@/app/schema";
@@ -62,12 +62,16 @@ export default function Nav() {
         </button>
         <button
           disabled={!isValid}
-          className="bg-primary rounded-md px-4 py-2 text-mainBg leading-tight duration-200 transition-colors hover:bg-primary-hover cursor-pointer diabled:cursor-not-allowed disabled:opacity-50"
+          className="bg-primary rounded-md px-4 py-2 text-mainBg leading-tight duration-200 transition-colors hover:bg-primary-hover cursor-pointer diabled:cursor-not-allowed disabled:opacity-50 min-w-[121.34px] flex justify-center items-center"
           onClick={() => {
             handleSubmitInvoice();
           }}
         >
-          {isPendingSubmit ? "..." : "Send invoice"}
+          {isPendingSubmit ? (
+            <Loader2 size={20} className="animate-spin" />
+          ) : (
+            "Send invoice"
+          )}
         </button>
         <div
           tabIndex={0}

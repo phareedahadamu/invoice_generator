@@ -1,5 +1,5 @@
 "use client";
-import { useFormContext, FieldErrors } from "react-hook-form";
+import { useFormContext, } from "react-hook-form";
 import { ChevronDown, UserRound, Mail, Phone, MapPinHouse } from "lucide-react";
 import { useState } from "react";
 import { currencies } from "@/app/constants";
@@ -13,17 +13,9 @@ export default function Details({ currentDate }: { currentDate: string }) {
   //   Form
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useFormContext<Invoice>();
 
-  const onSubmit = (data: Invoice) => {
-    console.log("Data:", data);
-    console.log("Errors:", errors);
-  };
-  const onError = (errors: FieldErrors<Invoice>) => {
-    console.log("SUBMIT BLOCKED ❌", errors);
-  };
   //   Currency Options
   const currencyOptions = currencies.map((c, index) => (
     <option key={index} value={c.sign} className="bg-mainBg">
@@ -31,12 +23,9 @@ export default function Details({ currentDate }: { currentDate: string }) {
     </option>
   ));
   return (
-    <form
-      className="w-full flex flex-col gap-8 text-[14px]"
-      onSubmit={handleSubmit(onSubmit, onError)}
-    >
+    <form className="w-full flex flex-col gap-8 text-[14px]">
       {/* General Info Section */}
-      <div className="rounded-md bg-surface pt-4  px-5 flex flex-col gap-6">
+      <div className="rounded-md bg-surface pt-4  px-5 flex flex-col gap-6 pb-8">
         <button
           className="w-full flex justify-between items-center cursor-pointer rounded-t-sm p-1 hover:bg-muted/25 duration-200 transition-colors border-b border-b-muted leading-10 text-4 font-semibold"
           type="button"
@@ -55,7 +44,9 @@ export default function Details({ currentDate }: { currentDate: string }) {
           <div className="flex flex-col gap-7">
             <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5">
               <label className="w-full flex flex-col relative gap-0.5">
-                <span>Name</span>
+                <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+                  Name
+                </span>
                 <input
                   {...register("name")}
                   type="text"
@@ -71,7 +62,9 @@ export default function Details({ currentDate }: { currentDate: string }) {
                 )}
               </label>
               <label className="w-full  flex flex-col gap-0.5 relative">
-                <span>Email</span>
+                <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+                  Email
+                </span>
                 <input
                   {...register("email")}
                   type="email"
@@ -103,7 +96,9 @@ export default function Details({ currentDate }: { currentDate: string }) {
                 )}
               </label>
               <label className="w-full  flex flex-col gap-0.5 relative">
-                <span>Address</span>
+                <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+                  Address
+                </span>
                 <input
                   {...register("address")}
                   type="text"
@@ -122,7 +117,9 @@ export default function Details({ currentDate }: { currentDate: string }) {
             <hr className="text-muted/25 w-full" />
             <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4">
               <label className="w-full flex flex-col gap-0.5">
-                <span>Invoice Number</span>
+                <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+                  Invoice Number
+                </span>
                 <input
                   {...register("invoiceNumber")}
                   type="text"
@@ -144,7 +141,9 @@ export default function Details({ currentDate }: { currentDate: string }) {
                 </select>
               </label>
               <label className="w-full flex flex-col gap-0.5">
-                <span>Date</span>
+                <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+                  Date
+                </span>
                 <input
                   min={currentDate}
                   {...register("date")}
@@ -158,7 +157,9 @@ export default function Details({ currentDate }: { currentDate: string }) {
                 )}
               </label>
               <label className="w-full flex flex-col gap-0.5">
-                <span>Due Date</span>
+                <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+                  Due Date
+                </span>
                 <input
                   min={currentDate}
                   {...register("dueDate")}
@@ -226,7 +227,6 @@ export default function Details({ currentDate }: { currentDate: string }) {
           </div>
         )}
       </div>
-      <button type="submit">Submit</button>
     </form>
   );
 }

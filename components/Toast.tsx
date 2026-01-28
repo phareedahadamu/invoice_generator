@@ -16,16 +16,16 @@ export default function Toast({
     <div
       className={`${
         type === "success"
-          ? "border-l-green-500"
+          ? "border-success"
           : type === "error"
-          ? "border-l-red-500"
-          : ""
-      } bg-white flex gap-6 max-w-112.5 w-[98%] rounded-md p-4 fixed bottom-4 right-4 shadow-md items-center border-l-[5px] `}
+            ? "border-danger"
+            : ""
+      } bg-surface flex gap-6 max-w-112.5 w-[98%] rounded-md p-4 fixed bottom-4 right-4 shadow-md items-center border-l-[5px] `}
     >
       {type === "success" ? (
-        <CircleCheck size="36" className="fill-green-500 text-white" />
+        <CircleCheck size="36" className="fill-success text-surface" />
       ) : type === "error" ? (
-        <CircleAlert size="36" className="fill-red-500 text-white" />
+        <CircleAlert size="36" className="fill-danger text-surface" />
       ) : null}
       <div className="flex flex-col gap-1 grow">
         <p className="font-medium">{title}</p>
@@ -38,8 +38,9 @@ export default function Toast({
             closeToast();
           }}
         >
-          <X className="text-neutral-500" size="18" />
+          <X className="text-muted" size="18" />
         </button>
       )}
-    </div>);
+    </div>
+  );
 }

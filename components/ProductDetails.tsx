@@ -63,10 +63,16 @@ export default function ProductDetails() {
         </colgroup>
         <thead className=" text-text-secondary">
           <tr>
-            <th className=" text-start py-3 pl-3 font-medium">Description</th>
-            <th className="font-medium">Qty</th>
-            <th className="font-medium">Price</th>
-            <th className="font-medium"></th>
+            <th className=" text-start py-3 pl-3 font-medium after:ml-0.5 after:text-red-500 after:content-['*']">
+              Description
+            </th>
+            <th className="font-medium after:ml-0.5 after:text-red-500 after:content-['*']">
+              Qty
+            </th>
+            <th className="font-medium after:ml-0.5 after:text-red-500 after:content-['*']">
+              Price
+            </th>
+            <th className="font-medium "></th>
           </tr>
         </thead>
         <tbody className="text-3">{itemRows}</tbody>
