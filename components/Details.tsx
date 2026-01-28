@@ -44,7 +44,7 @@ export default function Details({ currentDate }: { currentDate: string }) {
   return (
     <form className="w-full flex flex-col gap-8 text-[14px]">
       {/* General Info Section */}
-      <div className="rounded-md bg-surface pt-4  px-5 flex flex-col gap-6 pb-8">
+      <div className="rounded-md bg-surface pt-4 px-2 lg:px-5 flex flex-col gap-6 pb-8">
         <button
           className="w-full flex justify-between items-center cursor-pointer rounded-t-sm p-1 hover:bg-muted/25 duration-200 transition-colors border-b border-b-muted leading-10 text-4 font-semibold"
           type="button"
@@ -232,7 +232,7 @@ export default function Details({ currentDate }: { currentDate: string }) {
       </div>
 
       {/* Product details */}
-      <div className="rounded-md bg-surface pt-4 pb-8 px-5 flex flex-col gap-6">
+      <div className="rounded-md bg-surface pt-4 pb-8 px-2 lg:px-5 flex flex-col gap-6">
         <button
           className="w-full flex justify-between items-center cursor-pointer rounded-t-sm p-1 hover:bg-muted/25 duration-200 transition-colors leading-10 border-b border-b-muted text-4 font-semibold"
           type="button"

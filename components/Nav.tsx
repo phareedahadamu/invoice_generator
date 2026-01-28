@@ -87,7 +87,7 @@ export default function Nav() {
         <div>
           <Logo size={"45px"} />
         </div>
-        <span>Create Invoice</span>
+        <span className="hidden lg:block">Create Invoice</span>
       </div>
       <div className="flex gap-4  items-center">
         <button

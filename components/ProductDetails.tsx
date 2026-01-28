@@ -17,7 +17,7 @@ export default function ProductDetails() {
   //   itemRows
   const itemRows = fields.map((field, index) => (
     <tr key={field.id} className="relative">
-      <td className={`px-3 py-3 `}>
+      <td className={`lg:px-3 px-1 py-3 `}>
         <input
           type="text"
           placeholder="Enter product description"
@@ -25,14 +25,14 @@ export default function ProductDetails() {
           className={`w-full py-2 focus:outline-none focus:border-b  transition-colors duration-200 rounded-t-sm ${errors && errors.items && errors.items[index]?.description ? "bg-danger/25 border-b border-b-danger focus:border-b-danger" : "focus:border-b-secondary/25"}`}
         />
       </td>
-      <td className="px-3">
+      <td className="lg:px-3 px-0.5">
         <input
           type="number"
           {...register(`items.${index}.quantity`, { valueAsNumber: true })}
           className={` rounded-sm w-full  pl-1 py-1 transition-colors duration-200  ${errors && errors.items && errors.items[index]?.quantity ? "bg-danger/25 border border-danger focus:outline-danger" : "border bg-surface border-muted focus:outline-secondary/25"}`}
         />
       </td>
-      <td className={`px-3 `}>
+      <td className={`lg:px-3 px-0.5`}>
         <input
           type="number"
           {...register(`items.${index}.price`, { valueAsNumber: true })}
@@ -53,7 +53,7 @@ export default function ProductDetails() {
     </tr>
   ));
   return (
-    <div className="w-full flex flex-col gap-4 bg-mainBg rounded-md py-4 px-3">
+    <div className="w-full flex flex-col gap-4 bg-mainBg rounded-md py-4 lg:px-3 px-1">
       <table className="table-fixed ">
         <colgroup>
           <col className="w-[60%]" />
@@ -63,7 +63,7 @@ export default function ProductDetails() {
         </colgroup>
         <thead className=" text-text-secondary">
           <tr>
-            <th className=" text-start py-3 pl-3 font-medium after:ml-0.5 after:text-red-500 after:content-['*']">
+            <th className=" text-start py-3 lg:pl-3 pl-1 font-medium after:ml-0.5 after:text-red-500 after:content-['*']">
               Description
             </th>
             <th className="font-medium after:ml-0.5 after:text-red-500 after:content-['*']">
