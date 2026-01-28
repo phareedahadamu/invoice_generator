@@ -1,7 +1,7 @@
 "use client";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
-import { EllipsisVertical, Loader2 } from "lucide-react";
+import { EllipsisVertical, Loader2, Save, } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useFormContext } from "react-hook-form";
 import { Invoice } from "@/app/schema";
@@ -50,15 +50,18 @@ export default function Nav() {
   };
   return (
     <nav className="fixed top-0 flex max-w-350 w-[98%] lg:w-[92%] justify-between py-1 items-center z-1000 bg-mainBg">
-      <div className="flex gap-4 items-center">
+      <div className="flex lg:gap-4 gap-1.5 items-center">
         <div>
           <Logo size={"45px"} />
         </div>
         <span>Create Invoice</span>
       </div>
-      <div className="flex gap-4 items-center">
-        <button className=" rounded-md px-4 py-2 leading-tight text-text-secondary border border-text-secondary duration-200 transition-colors hover:border-secondary cursor-pointer hover:text-secondary">
+      <div className="flex gap-4  items-center">
+        <button className=" hidden lg:block rounded-md px-4 py-2 leading-tight text-text-secondary border border-text-secondary duration-200 transition-colors hover:border-secondary cursor-pointer hover:text-secondary">
           Save as draft
+        </button>
+        <button className=" block lg:hidden rounded-md  text-text-secondary  duration-200 transition-colors  cursor-pointer hover:text-secondary ">
+          <Save size={24} />
         </button>
         <button
           disabled={!isValid}
